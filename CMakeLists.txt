@@ -695,8 +695,23 @@ else()
 	target_compile_definitions(libWAVM PUBLIC "WAVM_API=")
 endif()
 
+option(WAVM_WITH_EXAMPLES "" OFF)
+option(WAVM_WITH_TESTS "" OFF)
+option(WAVM_WITH_EXECUTABLE "" OFF)
+
+if (WAVM_WITH_EXAMPLES)
+	add_subdirectory(Examples)
+endif()
+
+if (WAVM_WITH_TESTS)
+	add_subdirectory(Test)
+endif()
+
+if (WAVM_WITH_EXECUTABLE)
+	add_subdirectory(Programs/wavm)
+endif()
+
 # Process the CMake scripts in subdirectories.
-add_subdirectory(Examples)
 add_subdirectory(Include/WAVM/Inline)
 add_subdirectory(Lib/IR)
 add_subdirectory(Lib/Logging)
@@ -707,8 +722,6 @@ add_subdirectory(Lib/VFS)
 add_subdirectory(Lib/WASM)
 add_subdirectory(Lib/WASTParse)
 add_subdirectory(Lib/WASTPrint)
-add_subdirectory(Programs/wavm)
-add_subdirectory(Test)
 add_subdirectory(ThirdParty/BLAKE2)
 add_subdirectory(ThirdParty/liblmdb)
 
