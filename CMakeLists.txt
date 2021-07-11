@@ -696,7 +696,12 @@ else()
 endif()
 
 # Process the CMake scripts in subdirectories.
-add_subdirectory(Examples)
+
+option(WAVM_BUILD_EXAMPLES "Build examples" OFF)
+if (WAVM_BUILD_EXAMPLES)
+	add_subdirectory(Examples)
+endif()
+
 add_subdirectory(Include/WAVM/Inline)
 add_subdirectory(Lib/IR)
 add_subdirectory(Lib/Logging)
@@ -708,7 +713,12 @@ add_subdirectory(Lib/WASM)
 add_subdirectory(Lib/WASTParse)
 add_subdirectory(Lib/WASTPrint)
 add_subdirectory(Programs/wavm)
-add_subdirectory(Test)
+
+option(WAVM_BUILD_TESTS "Build tests" OFF)
+if (WAVM_BUILD_TESTS)
+	add_subdirectory(Test)
+endif()
+
 add_subdirectory(ThirdParty/BLAKE2)
 add_subdirectory(ThirdParty/liblmdb)
 
